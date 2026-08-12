@@ -1,0 +1,188 @@
+/* CSS Variables based on Brand Rules */
+:root {
+    --primary-green: #2F855A;
+    --dark-periwinkle: #2F2B9E;
+    --light-grey: #F4F4F4;
+    --text-charcoal: #2D3748;
+    --ku-crimson: #DC143C; /* Accessibility Focus outline */
+    --bg-white: #FFFFFF;
+}
+
+/* Reset & Base Settings */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-white);
+    color: var(--text-charcoal);
+    line-height: 1.6;
+}
+
+/* Accessibility: Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--dark-periwinkle);
+    color: white;
+    padding: 8px;
+    z-index: 1000;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--ku-crimson);
+}
+
+/* Typography & Links */
+h1, h2, h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-green);
+}
+
+a {
+    color: var(--dark-periwinkle);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--primary-green);
+}
+
+/* Global Focus State */
+*:focus-visible {
+    outline: 3px solid var(--ku-crimson) !important;
+    outline-offset: 2px;
+}
+
+/* Layout Padding (5% logic) */
+.site-header, 
+.tab-nav, 
+.main-content, 
+.site-footer {
+    padding: 2rem 5%;
+}
+
+.site-header {
+    background-color: var(--bg-white);
+}
+
+.site-header h1 {
+    font-size: 2.2rem;
+}
+
+/* Tab Navigation Container */
+.tab-nav {
+    background-color: var(--light-grey);
+    padding-bottom: 0; /* Tabs touch the bottom */
+}
+
+.tab-list {
+    display: flex;
+    gap: 0.5rem;
+    /* Mobile scrolling setup */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+}
+
+.tab-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* Tab Buttons (Folder Style) */
+button[role="tab"] {
+    appearance: none;
+    background-color: transparent;
+    color: var(--text-charcoal);
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+button[role="tab"]:hover {
+    background-color: #e2e8f0;
+}
+
+/* Active Tab Styles */
+button[role="tab"][aria-selected="true"] {
+    background-color: var(--bg-white);
+    border-top: 4px solid var(--dark-periwinkle);
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    color: var(--primary-green);
+    position: relative;
+    z-index: 2;
+    margin-bottom: -1px; /* Overlaps the bottom border to "merge" with panel */
+}
+
+/* Main Content Panels */
+.main-content {
+    border-top: 1px solid #ddd; /* Matches the bottom of the non-active tabs */
+    min-height: 50vh;
+}
+
+.tab-panel {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.content-section {
+    margin-bottom: 2rem;
+}
+
+.highlight-block {
+    background-color: var(--light-grey);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+/* Jinja-ready Lists */
+.data-list {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.data-list li {
+    margin-bottom: 0.75rem;
+}
+
+.page-links {
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--light-grey);
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+/* Media Queries for Desktop Wrap behavior */
+@media (min-width: 601px) {
+    .tab-list {
+        flex-wrap: wrap; /* Desktop allows wrapping instead of scrolling */
+        overflow-x: visible;
+    }
+}
