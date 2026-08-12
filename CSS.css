@@ -1,0 +1,177 @@
+/* Custom Properties (Variables) */
+:root {
+    --primary-green: #2F855A;
+    --dark-periwinkle: #2F2B9E;
+    --white: #FFFFFF;
+    --light-grey: #F4F4F4;
+    --deep-charcoal: #2D3748;
+}
+
+/* Global Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--deep-charcoal);
+    background-color: var(--light-grey); /* Creates contrast for the white tab panels */
+    line-height: 1.6;
+}
+
+/* Accessibility: Skip to Main Content */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--dark-periwinkle);
+    color: var(--white);
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Accessibility: High-Contrast Focus States */
+*:focus-visible {
+    outline: 3px solid var(--dark-periwinkle);
+    outline-offset: 2px;
+}
+
+/* Layout Spacing */
+header, main, footer {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+header {
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+footer {
+    background-color: var(--light-grey);
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #ddd;
+}
+
+/* Links */
+a {
+    color: var(--dark-periwinkle);
+    text-decoration: underline;
+}
+
+/* Contrast Blocks for Content */
+.contrast-block {
+    background-color: var(--light-grey);
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+/* --- TAB INTERFACE --- */
+
+.tabs-container {
+    margin-top: 2rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px; /* Slight gap between folders */
+}
+
+/* Strip default button styles & style as folders */
+[role="tab"] {
+    background-color: #e2e8f0; /* Slightly darker grey for inactive tabs */
+    color: var(--deep-charcoal);
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, border-top 0.2s;
+    appearance: none;
+    margin-bottom: -1px; /* Pull down to overlap the border-bottom of container */
+}
+
+[role="tab"]:hover {
+    background-color: #cbd5e1;
+}
+
+/* Active Tab Styles */
+[role="tab"][aria-selected="true"] {
+    background-color: var(--white);
+    border-top: 4px solid var(--dark-periwinkle);
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    /* Merges into the panel below by obscuring the container's bottom border */
+    z-index: 2;
+    position: relative;
+}
+
+/* Tab Panels */
+.tab-panel {
+    background-color: var(--white);
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 8px 8px; /* Round bottom corners slightly */
+    min-height: 400px;
+}
+
+/* Hidden state for inactive panels */
+.tab-panel[hidden] {
+    display: none;
+}
+
+/* Clean list styling for Jinja injection */
+.jinja-list {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.jinja-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 600px) {
+    .tab-list {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        width: max-content;
+        max-width: 100%;
+        /* Hide scrollbar for clean look */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+    }
+
+    .tab-list::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+    }
+
+    [role="tab"] {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .tab-panel {
+        padding: 1.5rem 1rem; /* Less padding on small screens */
+    }
+}
