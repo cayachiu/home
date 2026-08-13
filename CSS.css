@@ -94,27 +94,29 @@ a {
 
 /* Strip default button styles & style as folders */
 [role="tab"] {
-    background-color: #e2e8f0; /* Slightly darker grey for inactive tabs */
-    color: var(--deep-charcoal);
-    border: 1px solid #ccc;
+    background-color: var(--primary-green); /* Primary green for inactive tabs */
+    color: var(--white); /* White text for contrast */
+    border: 1px solid var(--primary-green);
     border-bottom: none;
     border-radius: 8px 8px 0 0;
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s, border-top 0.2s;
+    transition: background-color 0.2s, color 0.2s, border-top 0.2s;
     appearance: none;
     margin-bottom: -1px; /* Pull down to overlap the border-bottom of container */
 }
 
 [role="tab"]:hover {
-    background-color: #cbd5e1;
+    background-color: var(--white); /* Turns white on hover */
+    color: var(--primary-green); /* Text turns green on hover for contrast */
 }
 
 /* Active Tab Styles */
 [role="tab"][aria-selected="true"] {
-    background-color: var(--white);
+    background-color: var(--white); 
+    color: var(--deep-charcoal); /* Reverts text to charcoal so it is visible against the white active tab */
     border-top: 4px solid var(--dark-periwinkle);
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
