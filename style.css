@@ -117,9 +117,9 @@ a:hover {
 /* Tab Buttons (Folder Style) */
 button[role="tab"] {
     appearance: none;
-    background-color: transparent;
-    color: var(--text-charcoal);
-    border: 1px solid #ddd;
+    background-color: var(--primary-green); /* Solid green background for inactive tabs */
+    color: var(--bg-white); /* White text for contrast */
+    border: 1px solid var(--primary-green); /* Border matches the green background */
     border-bottom: none;
     border-radius: 8px 8px 0 0;
     padding: 0.75rem 1.5rem;
@@ -127,20 +127,21 @@ button[role="tab"] {
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s, border-top 0.2s;
 }
 
 button[role="tab"]:hover {
-    background-color: #e2e8f0;
+    background-color: var(--bg-white); /* Changes to white on hover */
+    color: var(--primary-green); /* Text changes to green on hover */
 }
 
 /* Active Tab Styles */
 button[role="tab"][aria-selected="true"] {
     background-color: var(--bg-white);
+    color: var(--text-charcoal); /* Dark charcoal text for readability on the active tab */
     border-top: 4px solid var(--dark-periwinkle);
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
-    color: var(--primary-green);
     position: relative;
     z-index: 2;
     margin-bottom: -1px; /* Overlaps the bottom border to "merge" with panel */
