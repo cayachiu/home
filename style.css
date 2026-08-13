@@ -97,7 +97,8 @@ a:hover {
 
 /* Tab Navigation Container */
 .tab-nav {
-    background-color: var(--light-grey);
+    background-color: var(--primary-green); /* Merges seamlessly with the header above it */
+    padding-top: 0;
     padding-bottom: 0; /* Tabs touch the bottom */
 }
 
