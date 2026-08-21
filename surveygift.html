@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Forces the browser to render the page using UTF-8 encoding -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verifying...</title>
+    <title>Rewards Form</title>
+    
+    <style>
+        /* CSS to ensure the iframe takes up the entire screen seamlessly */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevents double scrollbars */
+            font-family: sans-serif;
+        }
+        #gform-iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* Removes the iframe border */
+        }
+        .message-container {
+            padding: 20px;
+        }
+    </style>
     
     <script>
         window.onload = function() {
             var referrer = document.referrer;
-            // Replace with your actual LimeSurvey domain (e.g., "survey.yourcollege.edu")
             var allowedDomain = "ojs.lib.ntnu.edu.tw"; 
-            // Replace with your actual Google Form URL
-            var googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSciFKXvGkayW_wh0u8Yzce7WMndBsAUdAi-YEkBbEGcgZx41g/viewform?usp=header"; 
+            
+            // Notice: Added ?embedded=true at the end for a cleaner Google Forms UI
+            var googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSciFKXvGkayW_wh0u8Yzce7WMndBsAUdAi-YEkBbEGcgZx41g/viewform?embedded=true"; 
 
             if (referrer && referrer.indexOf(allowedDomain) !== -1) {
-                // Legitimate user from survey -> push to Google Form
-                window.location.href = googleFormUrl;
+                // Legitimate user -> replace body content with a full-screen iframe
+                document.body.innerHTML = '<iframe id="gform-iframe" src="' + googleFormUrl + '" title="Google Form">載入中 (Loading)...</iframe>';
             } else {
                 // Direct or unauthorized visitor -> block
-                document.body.innerHTML = "<h1>拒絕存取</h1><p>You must complete the survey to access this rewards form. 您必須完成問卷才能進入此表單。</p>";
+                document.body.innerHTML = '<div class="message-container"><h1>拒絕存取 Access Denied</h1><p>You must complete the survey to access this rewards form. 您必須完成問卷才能進入此表單。</p></div>';
             }
         };
     </script>
 </head>
 <body>
-    <p>正在驗證問卷完成狀態，請稍候...</p>
+    <div class="message-container">
+        <p>正在驗證問卷完成狀態，請稍候... (Verifying status, please wait...)</p>
+    </div>
 </body>
 </html>
