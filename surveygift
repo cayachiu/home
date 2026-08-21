@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Forces the browser to render the page using UTF-8 encoding -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifying...</title>
+    
+    <script>
+        window.onload = function() {
+            var referrer = document.referrer;
+            // Replace with your actual LimeSurvey domain (e.g., "survey.yourcollege.edu")
+            var allowedDomain = "ojs.lib.ntnu.edu.tw"; 
+            // Replace with your actual Google Form URL
+            var googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSciFKXvGkayW_wh0u8Yzce7WMndBsAUdAi-YEkBbEGcgZx41g/viewform?usp=header"; 
+
+            if (referrer && referrer.indexOf(allowedDomain) !== -1) {
+                // Legitimate user from survey -> push to Google Form
+                window.location.href = googleFormUrl;
+            } else {
+                // Direct or unauthorized visitor -> block
+                document.body.innerHTML = "<h1>拒絕存取</h1><p>You must complete the survey to access this rewards form. 您必須完成問卷才能進入此表單。</p>";
+            }
+        };
+    </script>
+</head>
+<body>
+    <p>正在驗證問卷完成狀態，請稍候...</p>
+</body>
+</html>
