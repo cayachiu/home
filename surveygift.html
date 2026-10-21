@@ -14,7 +14,7 @@
             overflow: hidden; /* Prevents double scrollbars */
             font-family: sans-serif;
         }
-        #gform-iframe {
+        #survey-iframe {
             width: 100%;
             height: 100%;
             border: none; /* Removes the iframe border */
@@ -29,12 +29,11 @@
             var referrer = document.referrer;
             var allowedDomain = "ojs.lib.ntnu.edu.tw"; 
             
-            // Notice: Added ?embedded=true at the end for a cleaner Google Forms UI
-            var googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSciFKXvGkayW_wh0u8Yzce7WMndBsAUdAi-YEkBbEGcgZx41g/viewform?embedded=true"; 
+            var surveyUrl = "https://ojs.lib.ntnu.edu.tw/survey/index.php/743732?newtest=Y"; 
 
             if (referrer && referrer.indexOf(allowedDomain) !== -1) {
                 // Legitimate user -> replace body content with a full-screen iframe
-                document.body.innerHTML = '<iframe id="gform-iframe" src="' + googleFormUrl + '" title="Google Form">載入中 (Loading)...</iframe>';
+                document.body.innerHTML = '<iframe id="survey-iframe" src="' + surveyUrl + '" title="Rewards Form">載入中 (Loading)...</iframe>';
             } else {
                 // Direct or unauthorized visitor -> block
                 document.body.innerHTML = '<div class="message-container"><h1>拒絕存取 Access Denied</h1><p>You must complete the survey to access this rewards form. 您必須完成問卷才能進入此表單。</p></div>';
